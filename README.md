@@ -1,0 +1,1 @@
+# platform.24.store.job-resource
