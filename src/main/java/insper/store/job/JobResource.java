@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Job", description = "Job API")
 public class JobResource implements JobController {
 
     @Autowired
     private JobService jobService;
 
     @GetMapping("/jobs/info")
+    @Operation(summary = "Info", description = "Job API Info")
     public ResponseEntity<Map<String, String>> info() {
         return new ResponseEntity<Map<String, String>>(
             Map.ofEntries(
@@ -46,6 +51,7 @@ public class JobResource implements JobController {
 
     
     @Override
+    @Operation(summary = "Create Job", description = "Create Job") 
     public ResponseEntity<JobOut> create(JobIn in) {
         // parser
         Job job = JobParser.to(in);
@@ -62,6 +68,7 @@ public class JobResource implements JobController {
     }
 
     @Override
+    @Operation(summary = "Update", description = "Update Job")
     public ResponseEntity<JobOut> update(String id, JobIn in) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
@@ -69,6 +76,7 @@ public class JobResource implements JobController {
 
 
     @Override
+    @Operation(summary = "Read", description = "Read Job")
     public ResponseEntity<JobOut> read(String idJob) {
         final JobOut job= JobOut.builder()
             .id(idJob)
@@ -77,6 +85,7 @@ public class JobResource implements JobController {
     }
     
     @GetMapping("/jobs-test")
+    @Operation(summary = "Test", description = "Test")
     public ResponseEntity<String> test() {
         return ResponseEntity.ok("Test");
     }

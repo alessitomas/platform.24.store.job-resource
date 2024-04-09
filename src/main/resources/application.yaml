@@ -28,3 +28,8 @@ eureka:
     service-url:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
  
+springdoc:
+  api-docs:
+    path: /jobs/v3/api-docs
+  swagger-ui:
+    path: /jobs/swagger-ui.html
