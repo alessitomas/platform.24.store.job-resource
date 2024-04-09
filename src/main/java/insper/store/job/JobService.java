@@ -16,6 +16,12 @@ public class JobService {
     @Autowired
     private JobRepository JobRepository;
 
+
+    // get all jobs
+    public Iterable<JobModel> readAll() {
+        return JobRepository.findAll();
+    }
+
     public Job create(Job in) {
         return JobRepository.save(new JobModel(in)).to();
     }
