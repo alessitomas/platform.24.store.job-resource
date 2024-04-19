@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Job", description = "Job API")
 public class JobResource implements JobController {
 
         @Autowired
@@ -44,6 +48,7 @@ public class JobResource implements JobController {
         }
 
         @Override
+        @Operation(summary = "Create Job", description = "Create Job")
         public ResponseEntity<JobOut> create(JobIn in) {
                 // parser
                 Job job = JobParser.to(in);
@@ -60,12 +65,14 @@ public class JobResource implements JobController {
         }
 
         @Override
+        @Operation(summary = "Update Job", description = "Update Job")
         public ResponseEntity<JobOut> update(String id, JobIn in) {
                 // TODO Auto-generated method stub
                 throw new UnsupportedOperationException("Unimplemented method 'update'");
         }
 
         @Override
+        @Operation(summary = "Read Job", description = "Read Job")
         public ResponseEntity<JobOut> read(String idJob) {
                 Job job = jobService.read(idJob);
                 if (job == null) {
