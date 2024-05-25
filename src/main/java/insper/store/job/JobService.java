@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
@@ -17,7 +18,7 @@ public class JobService {
     private JobRepository JobRepository;
 
 
-    // get all jobs
+    @Cacheable(value = "jobs", key = "#id", unless = "#result == null")
     public Iterable<JobModel> readAll() {
         return JobRepository.findAll();
     }
@@ -26,6 +27,7 @@ public class JobService {
         return JobRepository.save(new JobModel(in)).to();
     }
 
+    @Cacheable(value = "job", key = "#id", unless = "#result == null")
     public Job read(@NonNull String id) {
         return JobRepository.findById(id).map(JobModel::to).orElse(null);
     }
