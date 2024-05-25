@@ -18,7 +18,7 @@ public class JobService {
     private JobRepository JobRepository;
 
 
-    @Cacheable(value = "jobs", key = "#id", unless = "#result == null")
+    @Cacheable("jobs")
     public Iterable<JobModel> readAll() {
         return JobRepository.findAll();
     }
@@ -27,7 +27,7 @@ public class JobService {
         return JobRepository.save(new JobModel(in)).to();
     }
 
-    @Cacheable(value = "job", key = "#id", unless = "#result == null")
+    @Cacheable(value = "job")
     public Job read(@NonNull String id) {
         return JobRepository.findById(id).map(JobModel::to).orElse(null);
     }
