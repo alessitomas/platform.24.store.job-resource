@@ -64,12 +64,12 @@ public class JobResource implements JobController {
                                 .body(JobParser.to(job));
         }
 
-        @Override
-        @Operation(summary = "Update Job", description = "Update Job")
-        public ResponseEntity<JobOut> update(String id, JobIn in) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
-        }
+        // @Override
+        // @Operation(summary = "Update Job", description = "Update Job")
+        // public ResponseEntity<JobOut> update(String id, JobIn in) {
+        //         // TODO Auto-generated method stub
+        //         throw new UnsupportedOperationException("Unimplemented method 'update'");
+        // }
 
         @Override
         @Operation(summary = "Read Job", description = "Read Job")
